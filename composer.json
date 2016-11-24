@@ -1,0 +1,40 @@
+{
+    "name": "faustbrian/laravel-recurring",
+    "description": "simshaun/recurr integration for Laravel/Eloquent.",
+    "keywords": ["laravel", "framework", "Laravel-Recurring", "Laravel Recurring", "Brian Faust", "faustbrian"],
+    "license": "MIT",
+    "authors": [{
+        "name": "Brian Faust",
+        "email": "hello@brianfaust.de",
+        "homepage": "https://brianfaust.de"
+    }],
+    "require": {
+        "php": "^7.0",
+        "simshaun/recurr": "^1.2"
+    },
+    "require-dev": {
+        "graham-campbell/testbench": "^3.2",
+        "mockery/mockery": "^0.9.5",
+        "phpunit/phpunit": "^5.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "BrianFaust\\Recurring\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "BrianFaust\\Tests\\Recurring\\": "tests"
+        }
+    },
+    "config": {
+        "preferred-install": "dist"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
