@@ -20,12 +20,12 @@ trait Recurring
     public function getRecurringConfig()
     {
         return [
-            'start_date' => 'start_at',
-            'end_date'   => 'end_at',
-            'timezone'   => 'timezone',
-            'frequency'  => 'frequency',
-            'interval'   => 'interval',
-            'count'      => 'count',
+            'start_date' => $this->start_at,
+            'end_date'   => $this->end_at,
+            'timezone'   => $this->timezone,
+            'frequency'  => $this->frequency,
+            'interval'   => $this->interval,
+            'count'      => $this->count,
         ];
     }
 }

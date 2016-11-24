@@ -149,12 +149,8 @@ class Builder
         $config = $this->model->getRecurringConfig();
 
         return new Config(
-            $this->model->{$config['start_date']},
-            $this->model->{$config['end_date']},
-            $this->model->{$config['timezone']},
-            $this->model->{$config['frequency']},
-            $this->model->{$config['interval']},
-            $this->model->{$config['count']}
+            $config['start_date'], $config['end_date'], $config['timezone'],
+            $config['frequency'], $config['interval'], $config['count']
         );
     }
 }
