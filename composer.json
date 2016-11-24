@@ -10,6 +10,7 @@
     }],
     "require": {
         "php": "^7.0",
+        "illuminate/support": "5.3.*",
         "simshaun/recurr": "^1.2"
     },
     "require-dev": {
