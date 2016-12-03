@@ -9,6 +9,8 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
 namespace BrianFaust\Recurring;
 
 use Illuminate\Contracts\Support\Arrayable;
@@ -66,7 +68,7 @@ class Config implements Arrayable
     /**
      * @return string
      */
-    public function getStartDate() : string
+    public function getStartDate(): string
     {
         return $this->startDate;
     }
@@ -76,7 +78,7 @@ class Config implements Arrayable
      *
      * @return \BrianFaust\Recurring\Config
      */
-    public function setStartDate($value) : Config
+    public function setStartDate($value): Config
     {
         $this->startDate = $value;
 
@@ -96,7 +98,7 @@ class Config implements Arrayable
      *
      * @return \BrianFaust\Recurring\Config
      */
-    public function setEndDate($value) : Config
+    public function setEndDate($value): Config
     {
         $this->endDate = $value;
 
@@ -106,7 +108,7 @@ class Config implements Arrayable
     /**
      * @return string
      */
-    public function getTimezone() : string
+    public function getTimezone(): string
     {
         return $this->timezone;
     }
@@ -116,7 +118,7 @@ class Config implements Arrayable
      *
      * @return Config
      */
-    public function setTimezone($value) : Config
+    public function setTimezone($value): Config
     {
         $this->timezone = $value;
 
@@ -126,7 +128,7 @@ class Config implements Arrayable
     /**
      * @return int
      */
-    public function getFrequency() : int
+    public function getFrequency(): int
     {
         return $this->frequency;
     }
@@ -136,7 +138,7 @@ class Config implements Arrayable
      *
      * @return \BrianFaust\Recurring\Config
      */
-    public function setFrequency($value) : Config
+    public function setFrequency($value): Config
     {
         $this->frequency = $value;
 
@@ -146,7 +148,7 @@ class Config implements Arrayable
     /**
      * @return int
      */
-    public function getInterval() : int
+    public function getInterval(): int
     {
         return $this->interval;
     }
@@ -156,7 +158,7 @@ class Config implements Arrayable
      *
      * @return \BrianFaust\Recurring\Config
      */
-    public function setInterval($value) : Config
+    public function setInterval($value): Config
     {
         $this->interval = $value;
 
@@ -166,7 +168,7 @@ class Config implements Arrayable
     /**
      * @return int
      */
-    public function getCount() : int
+    public function getCount(): int
     {
         return $this->count;
     }
@@ -176,7 +178,7 @@ class Config implements Arrayable
      *
      * @return \BrianFaust\Recurring\Config
      */
-    public function setCount($value) : Config
+    public function setCount($value): Config
     {
         $this->count = $value;
 
@@ -186,7 +188,7 @@ class Config implements Arrayable
     /**
      * @return array
      */
-    public function getFrequencies() : array
+    public function getFrequencies(): array
     {
         return $this->frequencies;
     }

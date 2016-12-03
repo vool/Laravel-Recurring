@@ -9,6 +9,8 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
 namespace BrianFaust\Recurring;
 
 use DateTime;
@@ -87,7 +89,7 @@ class Builder
     /**
      * @return \Recurr\RecurrenceCollection
      */
-    public function schedule() : RecurrenceCollection
+    public function schedule(): RecurrenceCollection
     {
         $transformerConfig = new ArrayTransformerConfig();
         $transformerConfig->enableLastDayOfMonthFix();
@@ -101,7 +103,7 @@ class Builder
     /**
      * @return \Recurr\Rule
      */
-    public function rule() : Rule
+    public function rule(): Rule
     {
         $config = $this->getConfig();
 
@@ -127,7 +129,7 @@ class Builder
     /**
      * @return string
      */
-    public function getFrequencyType() : string
+    public function getFrequencyType(): string
     {
         return array_get($this->config->getFrequencies(), $this->getFromConfig('frequency'));
     }
@@ -145,7 +147,7 @@ class Builder
     /**
      * @return array
      */
-    public function getConfig() : array
+    public function getConfig(): array
     {
         return $this->config->toArray();
     }
@@ -153,7 +155,7 @@ class Builder
     /**
      * @return \BrianFaust\Recurring\Config
      */
-    private function buildConfig() : Config
+    private function buildConfig(): Config
     {
         $config = $this->model->getRecurringConfig();
 

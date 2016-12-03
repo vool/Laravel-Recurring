@@ -9,6 +9,8 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
 namespace BrianFaust\Recurring;
 
 trait Recurring
@@ -16,7 +18,7 @@ trait Recurring
     /**
      * @return Builder
      */
-    public function recurr() : Builder
+    public function recurr(): Builder
     {
         return new Builder($this);
     }
