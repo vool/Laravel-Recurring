@@ -207,7 +207,7 @@ class Config implements Arrayable
      *
      * @return array
      */
-    public function toArray()
+    public function toArray(): array
     {
         return [
             'start_date' => $this->startDate,
