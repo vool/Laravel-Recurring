@@ -60,11 +60,11 @@ class Config implements Arrayable
      * @param string      $startDate
      * @param string|null $endDate
      * @param string      $timezone
-     * @param int         $frequency
+     * @param string      $frequency
      * @param int         $interval
      * @param int         $count
      */
-    public function __construct(string $startDate, $endDate, string $timezone, int $frequency, int $interval, int $count)
+    public function __construct(string $startDate, $endDate, string $timezone, string $frequency, int $interval, int $count)
     {
         $this->startDate = $startDate;
         $this->endDate = $endDate;
