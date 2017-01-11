@@ -27,8 +27,8 @@ use DateTime;
 use DateTimeZone;
 use Illuminate\Database\Eloquent\Model;
 use Recurr\Frequency;
-use Recurr\Rule;
 use Recurr\RecurrenceCollection;
+use Recurr\Rule;
 use Recurr\Transformer\ArrayTransformer;
 use Recurr\Transformer\ArrayTransformerConfig;
 
@@ -144,7 +144,7 @@ class Builder
     {
         $frequency = $this->getFromConfig('frequency');
 
-        if(!in_array($frequency, $this->config->getFrequencies())) {
+        if (!in_array($frequency, $this->config->getFrequencies())) {
             throw new \InvalidArgumentException("$frequency is not a valid frequency");
         }
 
