@@ -22,11 +22,13 @@ declare(strict_types=1);
 
 namespace BrianFaust\Recurring;
 
+use Carbon\Carbon;
 use DateTime;
 use DateTimeZone;
 use Illuminate\Database\Eloquent\Model;
 use Recurr\Frequency;
 use Recurr\Rule;
+use Recurr\RecurrenceCollection;
 use Recurr\Transformer\ArrayTransformer;
 use Recurr\Transformer\ArrayTransformerConfig;
 
@@ -44,7 +46,7 @@ class Builder
     public function __construct(Model $model)
     {
         $this->model = $model;
-        $this->config = $this->setConfig();
+        $this->config = $this->buildConfig();
     }
 
     /**
@@ -56,7 +58,7 @@ class Builder
             return false;
         }
 
-        return $schedule->first()->getStart();
+        return Carbon::instance($schedule->first()->getStart());
     }
 
     /**
@@ -68,7 +70,7 @@ class Builder
             return false;
         }
 
-        return $schedule->last()->getStart();
+        return Carbon::instance($schedule->last()->getStart());
     }
 
     /**
@@ -80,7 +82,7 @@ class Builder
             return false;
         }
 
-        return $schedule->next()->getStart();
+        return Carbon::instance($schedule->next()->getStart());
     }
 
     /**
@@ -92,7 +94,7 @@ class Builder
             return false;
         }
 
-        return $schedule->current()->getStart();
+        return Carbon::instance($schedule->current()->getStart());
     }
 
     /**
@@ -140,7 +142,13 @@ class Builder
      */
     public function getFrequencyType(): string
     {
-        return array_get($this->config->getFrequencies(), $this->getFromConfig('frequency'));
+        $frequency = $this->getFromConfig('frequency');
+
+        if(!in_array($frequency, $this->config->getFrequencies())) {
+            throw new \InvalidArgumentException("$frequency is not a valid frequency");
+        }
+
+        return $frequency;
     }
 
     /**
