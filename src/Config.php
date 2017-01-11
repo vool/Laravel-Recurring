@@ -135,9 +135,9 @@ class Config implements Arrayable
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getFrequency(): int
+    public function getFrequency(): string
     {
         return $this->frequency;
     }
