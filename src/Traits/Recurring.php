@@ -1,8 +1,5 @@
 <?php
 
-
-declare(strict_types=1);
-
 /*
  * This file is part of Laravel Recurring.
  *
@@ -12,7 +9,9 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace BrianFaust\Recurring;
+namespace BrianFaust\Recurring\Traits;
+
+use BrianFaust\Recurring\Builder;
 
 trait Recurring
 {
@@ -33,11 +32,11 @@ trait Recurring
     {
         return [
             'start_date' => $this->start_at,
-            'end_date'   => $this->end_at,
-            'timezone'   => $this->timezone,
-            'frequency'  => $this->frequency,
-            'interval'   => $this->interval,
-            'count'      => $this->count,
+            'end_date' => $this->end_at,
+            'timezone' => $this->timezone,
+            'frequency' => $this->frequency,
+            'interval' => $this->interval,
+            'count' => $this->count,
         ];
     }
 }
