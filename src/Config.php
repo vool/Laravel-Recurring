@@ -36,11 +36,11 @@ class Config implements Arrayable
 
     /** @var array */
     private $frequencies = [
-        Frequency::YEARLY => 'YEARLY',
-        Frequency::MONTHLY => 'MONTHLY',
-        Frequency::WEEKLY => 'WEEKLY',
-        Frequency::DAILY => 'DAILY',
-        Frequency::HOURLY => 'HOURLY',
+        Frequency::YEARLY   => 'YEARLY',
+        Frequency::MONTHLY  => 'MONTHLY',
+        Frequency::WEEKLY   => 'WEEKLY',
+        Frequency::DAILY    => 'DAILY',
+        Frequency::HOURLY   => 'HOURLY',
         Frequency::MINUTELY => 'MINUTELY',
         Frequency::SECONDLY => 'SECONDLY',
     ];
@@ -200,11 +200,11 @@ class Config implements Arrayable
     {
         return [
             'start_date' => $this->startDate,
-            'end_date' => $this->endDate,
-            'timezone' => $this->timezone,
-            'frequency' => $this->frequency,
-            'interval' => $this->interval,
-            'count' => $this->count,
+            'end_date'   => $this->endDate,
+            'timezone'   => $this->timezone,
+            'frequency'  => $this->frequency,
+            'interval'   => $this->interval,
+            'count'      => $this->count,
         ];
     }
 }
