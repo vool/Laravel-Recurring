@@ -113,7 +113,7 @@ class Builder
             ->setInterval($config['interval']);
 
         if (!empty($config['end_date'])) {
-            $rule = $rule->setUntil(new DateTime($config['end_date']));
+            $rule = $rule->setEndDate(new DateTime($config['end_date']));
         }
 
         return $rule;
