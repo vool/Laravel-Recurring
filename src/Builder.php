@@ -13,7 +13,6 @@ namespace BrianFaust\Recurring;
 
 use Carbon\Carbon;
 use DateTime;
-use DateTimeZone;
 use Illuminate\Database\Eloquent\Model;
 use Recurr\Frequency;
 use Recurr\RecurrenceCollection;
@@ -107,7 +106,7 @@ class Builder
     {
         $config = $this->getConfig();
 
-        $rule = (new Rule)
+        $rule = (new Rule())
             ->setStartDate(new DateTime($config['start_date']))
             ->setTimezone($config['timezone'])
             ->setFreq($this->getFrequencyType())
@@ -119,7 +118,7 @@ class Builder
 
         return $rule;
     }
-    
+
     /**
      * @return string
      */
