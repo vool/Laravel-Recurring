@@ -107,25 +107,19 @@ class Builder
     {
         $config = $this->getConfig();
 
-        $rule = sprintf('FREQ=%s;', $this->getFrequencyType());
-
-        if ($config['interval'] > 1) {
-            $rule .= sprintf('INTERVAL=%s;', $config['interval']);
-        }
-
-        if ($config['end_date']) {
-            $rule .= sprintf('UNTIL=%s;', $config['end_date']);
-        }
+        $rule = (new Rule)
+            ->setStartDate(new DateTime($config['start_date']))
+            ->setTimezone($config['timezone'])
+            ->setFreq($this->getFrequencyType())
+            ->setInterval($config['interval']);
 
         if (!empty($config['end_date'])) {
-            $config['end_date'] = new DateTime($config['end_date'], new DateTimeZone($config['timezone']));
+            $rule = $rule->setUntil(new DateTime($config['end_date']));
         }
 
-        $config['start_date'] = new DateTime($config['start_date'], new DateTimeZone($config['timezone']));
-
-        return new Rule($rule, $config['start_date'], $config['end_date'], $config['timezone']);
+        return $rule;
     }
-
+    
     /**
      * @return string
      */
