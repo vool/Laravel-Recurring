@@ -106,14 +106,14 @@ class Builder
     {
         $config = $this->getConfig();
 
-        $rule = (new Rule())
-            ->setStartDate(new DateTime($config['start_date']))
+        $rule = (new Rule)
+            ->setStartDate(new DateTime($config['start_date'], new DateTimeZone($config['timezone'])))
             ->setTimezone($config['timezone'])
             ->setFreq($this->getFrequencyType())
             ->setInterval($config['interval']);
 
         if (!empty($config['end_date'])) {
-            $rule = $rule->setEndDate(new DateTime($config['end_date']));
+            $rule = $rule->setEndDate(new DateTime($config['end_date'], new DateTimeZone($config['timezone'])));
         }
 
         return $rule;
