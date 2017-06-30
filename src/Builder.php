@@ -13,6 +13,7 @@ namespace BrianFaust\Recurring;
 
 use Carbon\Carbon;
 use DateTime;
+use DateTimeZone;
 use Illuminate\Database\Eloquent\Model;
 use Recurr\Frequency;
 use Recurr\RecurrenceCollection;
