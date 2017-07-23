@@ -11,13 +11,13 @@
 
 namespace BrianFaust\Recurring;
 
-use Carbon\Carbon;
 use DateTime;
+use Recurr\Rule;
 use DateTimeZone;
-use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 use Recurr\Frequency;
 use Recurr\RecurrenceCollection;
-use Recurr\Rule;
+use Illuminate\Database\Eloquent\Model;
 use Recurr\Transformer\ArrayTransformer;
 use Recurr\Transformer\ArrayTransformerConfig;
 
@@ -43,7 +43,7 @@ class Builder
      */
     public function first()
     {
-        if (!$schedule = $this->schedule()) {
+        if (! $schedule = $this->schedule()) {
             return false;
         }
 
@@ -55,7 +55,7 @@ class Builder
      */
     public function last()
     {
-        if (!$schedule = $this->schedule()) {
+        if (! $schedule = $this->schedule()) {
             return false;
         }
 
@@ -67,7 +67,7 @@ class Builder
      */
     public function next()
     {
-        if (!$schedule = $this->schedule()) {
+        if (! $schedule = $this->schedule()) {
             return false;
         }
 
@@ -79,7 +79,7 @@ class Builder
      */
     public function current()
     {
-        if (!$schedule = $this->schedule()) {
+        if (! $schedule = $this->schedule()) {
             return false;
         }
 
@@ -113,7 +113,7 @@ class Builder
             ->setFreq($this->getFrequencyType())
             ->setInterval($config['interval']);
 
-        if (!empty($config['end_date'])) {
+        if (! empty($config['end_date'])) {
             $rule = $rule->setEndDate(new DateTime($config['end_date'], new DateTimeZone($config['timezone'])));
         }
 
@@ -127,7 +127,7 @@ class Builder
     {
         $frequency = $this->getFromConfig('frequency');
 
-        if (!in_array($frequency, $this->config->getFrequencies())) {
+        if (! in_array($frequency, $this->config->getFrequencies())) {
             throw new \InvalidArgumentException("$frequency is not a valid frequency");
         }
 

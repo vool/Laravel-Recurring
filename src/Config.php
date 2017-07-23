@@ -11,8 +11,8 @@
 
 namespace BrianFaust\Recurring;
 
-use Illuminate\Contracts\Support\Arrayable;
 use Recurr\Frequency;
+use Illuminate\Contracts\Support\Arrayable;
 
 class Config implements Arrayable
 {
