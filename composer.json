@@ -11,7 +11,7 @@
     "require": {
         "php": "^7.0",
         "illuminate/support": "5.3.* || 5.4.* || 5.5.*",
-        "simshaun/recurr": "^2.1"
+        "simshaun/recurr": "^3.0"
     },
     "require-dev": {
         "graham-campbell/testbench": "^3.3",
