@@ -15,12 +15,12 @@ $ composer require faustbrian/laravel-recurring
 
 namespace App;
 
-use FaustBrian\Recurring\Recurring;
+use FaustBrian\LaravelRecurring\Traits\RecurringTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
 {
-    use Recurring;
+    use RecurringTrait;
 }
 ```
 
@@ -40,6 +40,27 @@ Route::get('/', function () {
 
     $task->recurr()->schedule();
 });
+```
+
+## Example
+```php
+    $task = new App\Task();
+
+    $task->start_at = '2017/1/1';
+
+    $task->until = '2017/12/12';
+
+    $task->by_day = 'MO,FR';
+
+    $task->frequency = 'WEEKLY';
+
+    $task->timezone = 'Europe/Amsterdam';
+
+    $start = new DateTime('2017/5/5');
+
+    $end = new DateTime('2017/5/15');
+
+    print_r($task->recurr()->scheduleBetween($start, $end));
 ```
 
 ## Testing
