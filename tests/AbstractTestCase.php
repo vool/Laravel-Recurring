@@ -11,7 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace BrianFaust\Tests\Flash;
+namespace FaustBrian\Tests\Flash;
 
 use PHPUnit_Framework_TestCase;
 
