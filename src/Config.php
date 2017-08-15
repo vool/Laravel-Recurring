@@ -30,6 +30,12 @@ class Config implements Arrayable
     /** @var int */
     private $frequency;
 
+    /** @var string */
+    private $byDay;
+
+    /** @var string */
+    private $until;
+
     /** @var int */
     private $interval;
 
@@ -52,15 +58,19 @@ class Config implements Arrayable
      * @param string|null $endDate
      * @param string      $timezone
      * @param string      $frequency
+     * @param string      $byDay
+     * @param string      $until
      * @param int         $interval
      * @param int         $count
      */
-    public function __construct(string $startDate, $endDate, string $timezone, string $frequency, int $interval, ?int $count)
+    public function __construct(string $startDate, $endDate, string $timezone, string $frequency, $byDay, $until, $interval, ?int $count)
     {
         $this->startDate = $startDate;
         $this->endDate = $endDate;
         $this->timezone = $timezone;
         $this->frequency = $frequency;
+        $this->byDay = $byDay;
+        $this->until = $until;
         $this->interval = $interval;
         $this->count = $count;
     }
@@ -146,6 +156,46 @@ class Config implements Arrayable
     }
 
     /**
+     * @return string
+     */
+    public function getByDay(): string
+    {
+        return $this->byDay;
+    }
+
+    /**
+     * @param string $value
+     *
+     * @return \FaustBrian\Recurring\Config
+     */
+    public function setByDay($value): Config
+    {
+        $this->byDay = $value;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUntil(): string
+    {
+        return $this->until;
+    }
+
+    /**
+     * @param string $value
+     *
+     * @return \FaustBrian\Recurring\Config
+     */
+    public function setUntil($value): Config
+    {
+        $this->until = $value;
+
+        return $this;
+    }
+
+    /**
      * @return int
      */
     public function getInterval(): int
@@ -205,6 +255,8 @@ class Config implements Arrayable
             'end_date'   => $this->endDate,
             'timezone'   => $this->timezone,
             'frequency'  => $this->frequency,
+            'by_day'     => $this->byDay,
+            'until'      => $this->until,
             'interval'   => $this->interval,
             'count'      => $this->count,
         ];
