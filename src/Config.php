@@ -15,6 +15,7 @@ namespace FaustBrian\LaravelRecurring;
 
 use Recurr\Frequency;
 use Illuminate\Contracts\Support\Arrayable;
+use \DateTime;
 
 class Config implements Arrayable
 {
@@ -63,7 +64,7 @@ class Config implements Arrayable
      * @param int         $interval
      * @param int         $count
      */
-    public function __construct(string $startDate, $endDate, string $timezone, string $frequency, $byDay, $until, $interval, ?int $count)
+    public function __construct(DateTime $startDate, $endDate, $timezone, string $frequency, $byDay, $until, $interval, ?int $count)
     {
         $this->startDate = $startDate;
         $this->endDate = $endDate;

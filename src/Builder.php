@@ -127,9 +127,15 @@ class Builder
         $config = $this->getConfig();
 
         $rule = (new Rule())
-            ->setStartDate(new DateTime($config['start_date'], new DateTimeZone($config['timezone'])))
-            ->setTimezone($config['timezone'])
+            ->setStartDate($config['start_date'])
             ->setFreq($this->getFrequencyType());
+
+        if (! empty($config['timezone'])) {
+            $rule = $rule->setTimezone($config['timezone']);
+        }
+        else {
+            $rule->setTimezone(date_default_timezone_get());
+        }
 
         if (! empty($config['interval'])) {
             $rule = $rule->setInterval($config['interval']);
@@ -140,7 +146,7 @@ class Builder
         }
 
         if (! empty($config['until'])) {
-            $rule = $rule->setUntil(new DateTime($config['until']));
+            $rule = $rule->setUntil($config['until']);
         }
 
         if (! empty($config['count'])) {
@@ -148,7 +154,7 @@ class Builder
         }
 
         if (! empty($config['end_date'])) {
-            $rule = $rule->setEndDate(new DateTime($config['end_date'], new DateTimeZone($config['timezone'])));
+            $rule = $rule->setEndDate($config['end_date']);
         }
 
         return $rule;
