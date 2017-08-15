@@ -100,6 +100,23 @@ class Builder
         $transformer->setConfig($transformerConfig);
 
         return $transformer->transform($this->rule());
+
+    }
+
+    /**
+     * @return \Recurr\RecurrenceCollection
+     */
+    public function scheduleBetween(DateTime $startDate, DateTime $endDate): RecurrenceCollection
+    {
+        $transformerConfig = new ArrayTransformerConfig();
+        $transformerConfig->enableLastDayOfMonthFix();
+
+        $transformer = new ArrayTransformer();
+        $transformer->setConfig($transformerConfig);
+
+        $constraint = new \Recurr\Transformer\Constraint\BetweenConstraint($startDate, $endDate);
+        return $transformer->transform($this->rule(), $constraint);
+
     }
 
     /**
@@ -112,8 +129,23 @@ class Builder
         $rule = (new Rule())
             ->setStartDate(new DateTime($config['start_date'], new DateTimeZone($config['timezone'])))
             ->setTimezone($config['timezone'])
-            ->setFreq($this->getFrequencyType())
-            ->setInterval($config['interval']);
+            ->setFreq($this->getFrequencyType());
+
+        if (! empty($config['interval'])) {
+            $rule = $rule->setInterval($config['interval']);
+        }
+
+        if (! empty($config['by_day'])) {
+            $rule = $rule->setByDay(explode(",", $config['by_day']));
+        }
+
+        if (! empty($config['until'])) {
+            $rule = $rule->setUntil(new DateTime($config['until']));
+        }
+
+        if (! empty($config['count'])) {
+            $rule = $rule->setCount($config['count']);
+        }
 
         if (! empty($config['end_date'])) {
             $rule = $rule->setEndDate(new DateTime($config['end_date'], new DateTimeZone($config['timezone'])));
@@ -163,7 +195,8 @@ class Builder
 
         return new Config(
             $config['start_date'], $config['end_date'], $config['timezone'],
-            $config['frequency'], $config['interval'], $config['count']
+            $config['frequency'], $config['by_day'], $config['until'],
+            $config['interval'], $config['count']
         );
     }
 }

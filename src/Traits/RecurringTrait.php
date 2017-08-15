@@ -11,11 +11,11 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace BrianFaust\Recurring\Traits;
+namespace FaustBrian\LaravelRecurring\Traits;
 
-use BrianFaust\Recurring\Builder;
+use FaustBrian\LaravelRecurring\Builder;
 
-trait Recurring
+trait RecurringTrait
 {
     /**
      * @return Builder
@@ -39,6 +39,8 @@ trait Recurring
             'frequency'  => $this->frequency,
             'interval'   => $this->interval,
             'count'      => $this->count,
+            'by_day'     => $this->by_day,
+            'until'      => $this->until
         ];
     }
 }
