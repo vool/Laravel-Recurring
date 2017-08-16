@@ -142,7 +142,7 @@ class Builder
         }
 
         if (! empty($config['by_day'])) {
-            $rule = $rule->setByDay(explode(",", $config['by_day']));
+            $rule = $rule->setByDay($config['by_day']);
         }
 
         if (! empty($config['until'])) {
