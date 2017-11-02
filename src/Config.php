@@ -43,6 +43,12 @@ class Config implements Arrayable
     /** @var int */
     private $count;
 
+    /** @var mixed */
+    private $exceptions;
+
+    /** @var mixed */
+    private $inclusions;
+
     /** @var array */
     private $frequencies = [
         Frequency::YEARLY   => 'YEARLY',
@@ -63,8 +69,10 @@ class Config implements Arrayable
      * @param string      $until
      * @param int         $interval
      * @param int         $count
+     * @param mixed       $exceptions
+     * @param mixed       $inclusions
      */
-    public function __construct(DateTime $startDate, $endDate, $timezone, string $frequency, $byDay, $until, $interval, ?int $count)
+    public function __construct(DateTime $startDate, $endDate, $timezone, string $frequency, $byDay, $until, $interval, ?int $count, $exceptions = null, $inclusions = null)
     {
         $this->startDate = $startDate;
         $this->endDate = $endDate;
@@ -74,6 +82,8 @@ class Config implements Arrayable
         $this->until = $until;
         $this->interval = $interval;
         $this->count = $count;
+        $this->exceptions = $exceptions;
+        $this->inclusions = $inclusions;
     }
 
     /**
@@ -237,6 +247,46 @@ class Config implements Arrayable
     }
 
     /**
+     * @return int
+     */
+    public function getExceptions(): int
+    {
+        return $this->exceptions;
+    }
+
+    /**
+     * @param int $value
+     *
+     * @return \FaustBrian\Recurring\Config
+     */
+    public function setExceptions($value): Config
+    {
+        $this->exceptions = $value;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getInclusions(): int
+    {
+        return $this->inclusions;
+    }
+
+    /**
+     * @param int $value
+     *
+     * @return \FaustBrian\Recurring\Config
+     */
+    public function setInclusions($value): Config
+    {
+        $this->inclusions = $value;
+
+        return $this;
+    }
+
+    /**
      * @return array
      */
     public function getFrequencies(): array
@@ -260,6 +310,8 @@ class Config implements Arrayable
             'until'      => $this->until,
             'interval'   => $this->interval,
             'count'      => $this->count,
+			'exceptions' => $this->exceptions,
+			'inclusions' => $this->inclusions,
         ];
     }
 }

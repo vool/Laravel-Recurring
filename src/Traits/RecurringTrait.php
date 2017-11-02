@@ -40,7 +40,9 @@ trait RecurringTrait
             'interval'   => $this->interval,
             'count'      => $this->count,
             'by_day'     => $this->by_day,
-            'until'      => $this->until
+            'until'      => $this->until,
+			'exceptions' => $this->exceptions,
+			'inclusions' => $this->inclusions,
         ];
     }
 }

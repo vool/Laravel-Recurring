@@ -156,6 +156,26 @@ class Builder
         if (! empty($config['end_date'])) {
             $rule = $rule->setEndDate($config['end_date']);
         }
+		
+		if (! empty($config['exceptions'])) {
+			if (is_string($config['exceptions'])) {
+				$config['exceptions'] = explode(',', $config['exceptions']);
+			} else if (is_a($config['exceptions'], 'Illuminate\Database\Eloquent\Collection')) {
+				$config['exceptions'] = $config['exceptions']->pluck('date')->toArray();
+			}
+			
+			$rule->setExDates($config['exceptions']);
+		}
+		
+		if (! empty($config['inclusions'])) {
+			if (is_string($config['inclusions'])) {
+				$config['inclusions'] = explode(',', $config['inclusions']);
+			} else if (is_a($config['inclusions'], 'Illuminate\Database\Eloquent\Collection')) {
+				$config['inclusions'] = $config['inclusions']->pluck('date')->toArray();
+			}
+			
+			$rule->setRDates($config['inclusions']);
+		}
 
         return $rule;
     }
@@ -202,7 +222,7 @@ class Builder
         return new Config(
             $config['start_date'], $config['end_date'], $config['timezone'],
             $config['frequency'], $config['by_day'], $config['until'],
-            $config['interval'], $config['count']
+            $config['interval'], $config['count'], $config['exceptions'], $config['inclusions']
         );
     }
 }
