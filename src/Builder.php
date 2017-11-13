@@ -115,7 +115,14 @@ class Builder
         $transformer->setConfig($transformerConfig);
 
         $constraint = new \Recurr\Transformer\Constraint\BetweenConstraint($startDate, $endDate);
-        return $transformer->transform($this->rule(), $constraint);
+        // The $countConstraintFailures in the ArrayTransformer::transform() method
+		// decides whether the transformer will stop looping or just count failures
+		// toward the limit of recurrences.
+		// true = count toward limit
+		// false = stop looping
+		// We want it to stop looping since we're searching between two dates
+		// so that once the dates go beyond the range it will return.
+		return $transformer->transform($this->rule(), $constraint, $countConstraintFailures = false);
 
     }
 
