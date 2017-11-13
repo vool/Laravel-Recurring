@@ -42,7 +42,7 @@ Route::get('/', function () {
 });
 ```
 
-## Example
+## Examples
 ```php
     $task = new App\Task();
 
@@ -61,6 +61,44 @@ Route::get('/', function () {
     $end = new DateTime('2017/5/15');
 
     print_r($task->recurr()->scheduleBetween($start, $end));
+	
+	// Using exceptions and inclusions
+	
+	$task->exceptions = ['2017/05/08'];
+	
+	$task->inclusions = ['2017/05/10', '2017/05/11'];
+	
+	print_r($task->recurr()->scheduleBetween($start, $end));
+```
+
+### Using Exception and Inclusion Dates Directly from Related Models
+
+Exceptions and inclusions can be passed as a single date string, an array of date strings, or as an `Eloquent\Collection`.
+The value will be plucked from the `date` column.
+
+Example exceptions migration
+```php
+	Schema::create('exceptions', function (Blueprint $table) {
+		$table->increments('id');
+		$table->integer('event_id')->unsigned();
+		$table->datetime('date');
+		$table->timestamps();
+	});
+```
+
+Assuming Task model has a hasMany relation to Exception, e.g.
+```php
+	public function exceptions()
+	{
+		return $this->hasMany(Exception::class);
+	}
+```
+
+The exceptions can be passed to recurr directly.
+```php
+	$task = App\Task::with('exceptions')->find(1);
+	
+	print_r($task->recurr()->schedule());
 ```
 
 ## Testing
