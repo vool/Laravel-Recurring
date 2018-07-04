@@ -171,6 +171,9 @@ class Config implements Arrayable
      */
     public function setByDay($value): Config
     {
+        if (is_string($value)) {
+            $value = explode(',', $value);
+        }
         $this->byDay = $value;
 
         return $this;
@@ -251,6 +254,11 @@ class Config implements Arrayable
      */
     public function setExceptions($value): Config
     {
+        if (is_string($value)) {
+            $value = explode(',', $value);
+        } else if (is_a($value, 'Illuminate\Database\Eloquent\Collection')) {
+            $value = $value->pluck('date')->toArray();
+        }
         $this->exceptions = $value;
 
         return $this;
@@ -271,6 +279,11 @@ class Config implements Arrayable
      */
     public function setInclusions($value): Config
     {
+        if (is_string($value)) {
+            $value = explode(',', $value);
+        } else if (is_a($value, 'Illuminate\Database\Eloquent\Collection')) {
+            $value = $value->pluck('date')->toArray();
+        }
         $this->inclusions = $value;
 
         return $this;
