@@ -20,12 +20,12 @@
     },
     "autoload": {
         "psr-4": {
-            "FaustBrian\\LaravelRecurring\\": "src/"
+            "BrianFaust\\Recurring\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "FaustBrian\\Tests\\Recurring\\": "tests"
+            "BrianFaust\\Tests\\Recurring\\": "tests"
         }
     },
     "config": {

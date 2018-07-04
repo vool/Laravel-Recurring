@@ -11,7 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace FaustBrian\LaravelRecurring;
+namespace BrianFaust\Recurring;
 
 use DateTime;
 use Recurr\Rule;
@@ -220,7 +220,7 @@ class Builder
     }
 
     /**
-     * @return \FaustBrian\Recurring\Config
+     * @return \BrianFaust\Recurring\Config
      */
     private function buildConfig(): Config
     {

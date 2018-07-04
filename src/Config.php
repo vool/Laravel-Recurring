@@ -11,7 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace FaustBrian\LaravelRecurring;
+namespace BrianFaust\Recurring;
 
 use Recurr\Frequency;
 use Illuminate\Contracts\Support\Arrayable;
@@ -97,7 +97,7 @@ class Config implements Arrayable
     /**
      * @param string $value
      *
-     * @return \FaustBrian\Recurring\Config
+     * @return \BrianFaust\Recurring\Config
      */
     public function setStartDate($value): Config
     {
@@ -117,7 +117,7 @@ class Config implements Arrayable
     /**
      * @param string $value
      *
-     * @return \FaustBrian\Recurring\Config
+     * @return \BrianFaust\Recurring\Config
      */
     public function setEndDate($value): Config
     {
@@ -157,7 +157,7 @@ class Config implements Arrayable
     /**
      * @param int $value
      *
-     * @return \FaustBrian\Recurring\Config
+     * @return \BrianFaust\Recurring\Config
      */
     public function setFrequency($value): Config
     {
@@ -177,7 +177,7 @@ class Config implements Arrayable
     /**
      * @param string $value
      *
-     * @return \FaustBrian\Recurring\Config
+     * @return \BrianFaust\Recurring\Config
      */
     public function setByDay($value): Config
     {
@@ -197,7 +197,7 @@ class Config implements Arrayable
     /**
      * @param string $value
      *
-     * @return \FaustBrian\Recurring\Config
+     * @return \BrianFaust\Recurring\Config
      */
     public function setUntil($value): Config
     {
@@ -217,7 +217,7 @@ class Config implements Arrayable
     /**
      * @param int $value
      *
-     * @return \FaustBrian\Recurring\Config
+     * @return \BrianFaust\Recurring\Config
      */
     public function setInterval($value): Config
     {
@@ -237,7 +237,7 @@ class Config implements Arrayable
     /**
      * @param int $value
      *
-     * @return \FaustBrian\Recurring\Config
+     * @return \BrianFaust\Recurring\Config
      */
     public function setCount($value): Config
     {
@@ -257,7 +257,7 @@ class Config implements Arrayable
     /**
      * @param int $value
      *
-     * @return \FaustBrian\Recurring\Config
+     * @return \BrianFaust\Recurring\Config
      */
     public function setExceptions($value): Config
     {
@@ -277,7 +277,7 @@ class Config implements Arrayable
     /**
      * @param int $value
      *
-     * @return \FaustBrian\Recurring\Config
+     * @return \BrianFaust\Recurring\Config
      */
     public function setInclusions($value): Config
     {

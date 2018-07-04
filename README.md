@@ -15,7 +15,7 @@ $ composer require faustbrian/laravel-recurring
 
 namespace App;
 
-use FaustBrian\LaravelRecurring\Traits\RecurringTrait;
+use BrianFaust\LaravelRecurring\Traits\RecurringTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
