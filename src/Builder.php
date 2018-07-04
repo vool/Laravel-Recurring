@@ -1,8 +1,6 @@
 <?php
 
-declare(strict_types=1);
-
-/*
+/**
  * This file is part of Laravel Recurring.
  *
  * (c) Brian Faust <hello@brianfaust.de>
@@ -45,7 +43,7 @@ class Builder
      */
     public function first()
     {
-        if (! $schedule = $this->schedule()) {
+        if (!$schedule = $this->schedule()) {
             return false;
         }
 
@@ -57,7 +55,7 @@ class Builder
      */
     public function last()
     {
-        if (! $schedule = $this->schedule()) {
+        if (!$schedule = $this->schedule()) {
             return false;
         }
 
@@ -69,7 +67,7 @@ class Builder
      */
     public function next()
     {
-        if (! $schedule = $this->schedule()) {
+        if (!$schedule = $this->schedule()) {
             return false;
         }
 
@@ -81,7 +79,7 @@ class Builder
      */
     public function current()
     {
-        if (! $schedule = $this->schedule()) {
+        if (!$schedule = $this->schedule()) {
             return false;
         }
 
@@ -91,7 +89,7 @@ class Builder
     /**
      * @return \Recurr\RecurrenceCollection
      */
-    public function schedule(): RecurrenceCollection
+    public function schedule() : RecurrenceCollection
     {
         $transformerConfig = new ArrayTransformerConfig();
         $transformerConfig->enableLastDayOfMonthFix();
@@ -100,7 +98,6 @@ class Builder
         $transformer->setConfig($transformerConfig);
 
         return $transformer->transform($this->rule());
-
     }
 
     /**
@@ -118,21 +115,21 @@ class Builder
         $transformer->setConfig($transformerConfig);
 
         $constraint = new \Recurr\Transformer\Constraint\BetweenConstraint($startDate, $endDate);
-        // The $countConstraintFailures in the ArrayTransformer::transform() method
+		// The $countConstraintFailures in the ArrayTransformer::transform() method
 		// decides whether the transformer will stop looping or just count failures
 		// toward the limit of recurrences.
 		// true = count toward limit
 		// false = stop looping
 		// We want it to stop looping since we're searching between two dates
 		// so that once the dates go beyond the range it will return.
-		return $transformer->transform($this->rule(), $constraint, $countConstraintFailures = false);
+        return $transformer->transform($this->rule(), $constraint, $countConstraintFailures = false);
 
     }
 
     /**
      * @return \Recurr\Rule
      */
-    public function rule(): Rule
+    public function rule() : Rule
     {
         $config = $this->getConfig();
 
@@ -140,30 +137,29 @@ class Builder
             ->setStartDate($config['start_date'])
             ->setFreq($this->getFrequencyType());
 
-        if (! empty($config['timezone'])) {
+        if (!empty($config['timezone'])) {
             $rule = $rule->setTimezone($config['timezone']);
-        }
-        else {
+        } else {
             $rule->setTimezone(date_default_timezone_get());
         }
 
-        if (! empty($config['interval'])) {
+        if (!empty($config['interval'])) {
             $rule = $rule->setInterval($config['interval']);
         }
 
-        if (! empty($config['by_day'])) {
+        if (!empty($config['by_day'])) {
             $rule = $rule->setByDay($config['by_day']);
         }
 
-        if (! empty($config['until'])) {
+        if (!empty($config['until'])) {
             $rule = $rule->setUntil($config['until']);
         }
 
-        if (! empty($config['count'])) {
+        if (!empty($config['count'])) {
             $rule = $rule->setCount($config['count']);
         }
 
-        if (! empty($config['end_date'])) {
+        if (!empty($config['end_date'])) {
             $rule = $rule->setEndDate($config['end_date']);
         }
 
@@ -181,11 +177,11 @@ class Builder
     /**
      * @return string
      */
-    public function getFrequencyType(): string
+    public function getFrequencyType() : string
     {
         $frequency = $this->getFromConfig('frequency');
 
-        if (! in_array($frequency, $this->config->getFrequencies())) {
+        if (!in_array($frequency, $this->config->getFrequencies())) {
             throw new \InvalidArgumentException("$frequency is not a valid frequency");
         }
 
@@ -199,13 +195,13 @@ class Builder
      */
     private function getFromConfig($key)
     {
-        return $this->config->{'get'.studly_case($key)}();
+        return $this->config->{'get' . studly_case($key)}();
     }
 
     /**
      * @return array
      */
-    public function getConfig(): array
+    public function getConfig() : array
     {
         return $this->config->toArray();
     }
@@ -213,7 +209,7 @@ class Builder
     /**
      * @return \BrianFaust\Recurring\Config
      */
-    private function buildConfig(): Config
+    private function buildConfig() : Config
     {
         return new Config($this->model->getRecurringConfig());
     }
