@@ -166,26 +166,14 @@ class Builder
         if (! empty($config['end_date'])) {
             $rule = $rule->setEndDate($config['end_date']);
         }
-		
-		if (! empty($config['exceptions'])) {
-			if (is_string($config['exceptions'])) {
-				$config['exceptions'] = explode(',', $config['exceptions']);
-			} else if (is_a($config['exceptions'], 'Illuminate\Database\Eloquent\Collection')) {
-				$config['exceptions'] = $config['exceptions']->pluck('date')->toArray();
-			}
-			
-			$rule->setExDates($config['exceptions']);
-		}
-		
-		if (! empty($config['inclusions'])) {
-			if (is_string($config['inclusions'])) {
-				$config['inclusions'] = explode(',', $config['inclusions']);
-			} else if (is_a($config['inclusions'], 'Illuminate\Database\Eloquent\Collection')) {
-				$config['inclusions'] = $config['inclusions']->pluck('date')->toArray();
-			}
-			
-			$rule->setRDates($config['inclusions']);
-		}
+
+        if (!empty($config['exceptions'])) {
+            $rule->setExDates($config['exceptions']);
+        }
+
+        if (!empty($config['inclusions'])) {
+            $rule->setRDates($config['inclusions']);
+        }
 
         return $rule;
     }
