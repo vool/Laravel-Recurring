@@ -106,8 +106,11 @@ class Builder
     /**
      * @return \Recurr\RecurrenceCollection
      */
-    public function scheduleBetween(DateTime $startDate, DateTime $endDate): RecurrenceCollection
+    public function scheduleBetween($startDate, $endDate) : RecurrenceCollection
     {
+        $startDate = $this->config->convertDate($startDate);
+        $endDate = $this->config->convertDate($endDate);
+
         $transformerConfig = new ArrayTransformerConfig();
         $transformerConfig->enableLastDayOfMonthFix();
 
@@ -224,12 +227,6 @@ class Builder
      */
     private function buildConfig(): Config
     {
-        $config = $this->model->getRecurringConfig();
-
-        return new Config(
-            $config['start_date'], $config['end_date'], $config['timezone'],
-            $config['frequency'], $config['by_day'], $config['until'],
-            $config['interval'], $config['count'], $config['exceptions'], $config['inclusions']
-        );
+        return new Config($this->model->getRecurringConfig());
     }
 }

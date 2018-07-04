@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of Laravel Recurring.
  *
@@ -61,29 +59,21 @@ class Config implements Arrayable
     ];
 
     /**
-     * @param string      $startDate
-     * @param string|null $endDate
-     * @param string      $timezone
-     * @param string      $frequency
-     * @param string      $byDay
-     * @param string      $until
-     * @param int         $interval
-     * @param int         $count
-     * @param mixed       $exceptions
-     * @param mixed       $inclusions
+     * @param array      $config
      */
-    public function __construct(DateTime $startDate, $endDate, $timezone, string $frequency, $byDay, $until, $interval, ?int $count, $exceptions = null, $inclusions = null)
+    public function __construct($attributes)
     {
-        $this->startDate = $startDate;
-        $this->endDate = $endDate;
-        $this->timezone = $timezone;
-        $this->frequency = $frequency;
-        $this->byDay = $byDay;
-        $this->until = $until;
-        $this->interval = $interval;
-        $this->count = $count;
-        $this->exceptions = $exceptions;
-        $this->inclusions = $inclusions;
+        foreach ($attributes as $key => $value) {
+            $this->{'set' . studly_case($key)}($value);
+        }
+    }
+
+    /**
+     * @return DateTime
+     */
+    public function convertDate($date)
+    {
+        return ($date instanceof DateTime ? $date : new DateTime($date));
     }
 
     /**
@@ -101,7 +91,7 @@ class Config implements Arrayable
      */
     public function setStartDate($value): Config
     {
-        $this->startDate = $value;
+        $this->startDate = $this->convertDate($value);
 
         return $this;
     }
@@ -121,7 +111,7 @@ class Config implements Arrayable
      */
     public function setEndDate($value): Config
     {
-        $this->endDate = $value;
+        $this->endDate = $this->convertDate($value);
 
         return $this;
     }
@@ -201,7 +191,7 @@ class Config implements Arrayable
      */
     public function setUntil($value): Config
     {
-        $this->until = $value;
+        $this->until = $this->convertDate($value);
 
         return $this;
     }
