@@ -5,8 +5,16 @@
 Require this package, with [Composer](https://getcomposer.org/), in the root directory of your project.
 
 ``` bash
-$ composer require faustbrian/laravel-recurring
+$ composer require houseoftech/laravel-recurring
 ```
+
+This package includes a publishable asset. Publishing will copy the config to your project so it can be modified.
+
+```bash
+$ php artisan vendor:publish
+```
+
+The config file can be found at `config/laravel-recurring.php`.
 
 ## Usage
 
