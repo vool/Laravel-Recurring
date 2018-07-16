@@ -1,12 +1,15 @@
 {
-    "name": "faustbrian/laravel-recurring",
+    "name": "houseoftech/laravel-recurring",
     "description": "simshaun/recurr integration for Laravel/Eloquent.",
-    "keywords": ["laravel", "framework", "Laravel-Recurring", "Laravel Recurring", "Brian Faust", "faustbrian"],
+    "keywords": ["laravel", "framework", "Laravel-Recurring", "Laravel Recurring"],
     "license": "MIT",
     "authors": [{
         "name": "Brian Faust",
         "email": "hello@brianfaust.de",
         "homepage": "https://brianfaust.de"
+    },
+    {
+        "name": "Corie Slate"
     }],
     "require": {
         "php": "^7.0",
