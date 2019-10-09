@@ -20,6 +20,7 @@ use Recurr\RecurrenceCollection;
 use Illuminate\Database\Eloquent\Model;
 use Recurr\Transformer\ArrayTransformer;
 use Recurr\Transformer\ArrayTransformerConfig;
+use Illuminate\Support\Str;
 
 class Builder
 {
@@ -195,7 +196,7 @@ class Builder
      */
     private function getFromConfig($key)
     {
-        return $this->config->{'get' . studly_case($key)}();
+        return $this->config->{'get' . Str::studly($key)}();
     }
 
     /**

@@ -13,6 +13,7 @@ namespace BrianFaust\Recurring;
 
 use Recurr\Frequency;
 use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Support\Str;
 use \DateTime;
 
 class Config implements Arrayable
@@ -64,7 +65,7 @@ class Config implements Arrayable
     public function __construct($attributes)
     {
         foreach ($attributes as $key => $value) {
-            $this->{'set' . studly_case($key)}($value);
+            $this->{'set' . Str::studly($key)}($value);
         }
     }
 
