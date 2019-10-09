@@ -8,6 +8,12 @@ Require this package, with [Composer](https://getcomposer.org/), in the root dir
 $ composer require houseoftech/laravel-recurring
 ```
 
+Note: If using with Laravel 5.x, require version 1.
+
+``` bash
+$ composer require houseoftech/laravel-recurring:1.5.3
+```
+
 This package includes a publishable asset. Publishing will copy the config to your project so it can be modified.
 
 ```bash
